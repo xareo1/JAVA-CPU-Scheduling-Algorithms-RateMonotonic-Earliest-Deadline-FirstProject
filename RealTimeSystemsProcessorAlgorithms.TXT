@@ -6,15 +6,13 @@ public class Main
 {
  public static void main(String[] args) 
  {
-     
     Scanner sc =new Scanner(System.in);
     
-    
-    System.out.println("kac tane task olusturmak istersiniz");
+    System.out.println("how many cpu task do you want to create?");
     int taskCount;
     taskCount = sc.nextInt();
     
-     int[] task = new int[taskCount];//kullanicinin verecegi task sayisi
+     int[] task = new int[taskCount];//task number given by user
      int[] taskIndex = new int[taskCount];//task period icinde bittiginde 
      
      int[] executeTime = new int[taskCount];//execute time
@@ -24,29 +22,27 @@ public class Main
      int breakFlag=0;
      int nullFlag=0;
      
-     int[] period = new int[taskCount];//her bir task icin period suresini tutuyor
-     int[] priority = new int[taskCount];//periodu en dusuk olanin onceligi en fazla, onu tutuyor
+     int[] period = new int[taskCount];//hold duration of every task
+     int[] priority = new int[taskCount];//shortest period get the higher priority
      int[] periodTemp = new int[taskCount];
      int counter=0;
      
      int choice;
-     System.out.println("Hangi siralama algoritmasini kullanmak istersiniz? ");
-     System.out.println("Rate Monotonic Scheduling icin 1, Earliest Deadline First icin 2 ye basin");
+     System.out.println("Which algorithm do you want to use? ");
+     System.out.println("Rate Monotonic Scheduling 1, Earliest Deadline First icin 2");
      choice= sc.nextInt();
      
      if(choice==1)
      {
-         System.out.println("Rate Monotonic Scheduling'e hosgeldiniz");
+         System.out.println("Rate Monotonic Scheduling algorithm is selected");
          
          
-         System.out.println("tasklarin calisma suresi ve periyodunu sirayla giriniz ");
+         System.out.println("enter the duration and period of the tasks ");
     
     for(int i=0; i< (taskCount) ; i++)
-    {
-      //notasyona task 0 yazmamak icin kullaniciya task[0] i task 1 olarak gostericem    
+    { 
       System.out.println("task "+ (i+1) + " icin calisma suresini giriniz" ); 
       executeTime[i] = sc.nextInt();
-      
       
       System.out.println("task "+ (i+1) + " icin periodu giriniz" );
       period[i] = sc.nextInt();
@@ -68,15 +64,12 @@ public class Main
     System.out.println("Ui: " + Ui );
     
     double inverseTaskcount = 1/(double)taskCount;
+    
     double bound;
-    
-    
     bound = taskCount * (Math.pow(2,inverseTaskcount) - 1 );
     
-    
-    
     int utilizationFlag=1;
-    
+   
     if(Ui>1)
     {
         System.out.println("Ui 1'den buyuk" );
@@ -88,9 +81,6 @@ public class Main
       System.out.println("Ui bound'dan buyuk" );
       utilizationFlag=0;
     }*/
-    
-    
-    
     
     //zamanı ilerleten for katmani, periodu en yuksek olan islemin iki katı kadar suruyor
     if(utilizationFlag!=0)
@@ -105,12 +95,10 @@ public class Main
                   if(executeFlag[idlectr]==1)
                   {
                       nullFlag++;
-                  }
-                  
-                 
+                  }    
               }
               
-               if(nullFlag==taskCount)//3
+              if(nullFlag==taskCount)//3
                   {
                       System.out.print("Current time(second): " + timeStamp + " " );
                       System.out.println("processor is idle");
@@ -121,9 +109,7 @@ public class Main
                   {
                       nullFlag=0;
                   }
-              
           }
-          
           
           counter=0;
           for(int l=0;l<taskCount;l++)
@@ -198,10 +184,7 @@ public class Main
      }//choice if end
      else if(choice==2)
      {
-         System.out.println("Earliest Dead Line First Scheduling'e hosgeldiniz");
-         
-         
-         
+         System.out.println("Earliest Dead Line First Scheduling'e hosgeldiniz");  
          System.out.println("tasklarin calisma suresi ve deadline'lariin sirayla giriniz ");
     
     for(int i=0; i< (taskCount) ; i++)
@@ -240,9 +223,6 @@ public class Main
         System.exit(1);
     }
       
-      
-    
-    
        for(int timeStamp=0 ; timeStamp < 30 ; )
         {
             
@@ -290,8 +270,6 @@ public class Main
                   {
                       nullFlag++;
                   }
-                  
-                 
               }
               
                if(nullFlag==taskCount)
@@ -306,7 +284,6 @@ public class Main
                       nullFlag=0;
                   }
           
-           
           for(int x=0;x<taskCount;x++)
           {
               
@@ -340,12 +317,6 @@ public class Main
                  break;
                }//executeFlag if end
           }//x for end
-          
-          
-          
-          
-         
-         
         }//timeStamp for end
          
      }//choice else if end
@@ -355,11 +326,6 @@ public class Main
          System.out.println("Dogru giris yapilmadi, sizden istenen degerleri dogru girerek tekrar deneyiniz");
          System.exit(1);
      }//choice else end
-     
-      
-    
-    
-
  }
   
 }
