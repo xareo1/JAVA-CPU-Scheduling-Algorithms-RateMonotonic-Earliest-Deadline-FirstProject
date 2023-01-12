@@ -41,21 +41,20 @@ public class Main
     
     for(int i=0; i< (taskCount) ; i++)
     { 
-      System.out.println("task "+ (i+1) + " icin calisma suresini giriniz" ); 
+      System.out.println("task "+ (i+1) + " enter total duration of task by seconds" ); 
       executeTime[i] = sc.nextInt();
       
-      System.out.println("task "+ (i+1) + " icin periodu giriniz" );
+      System.out.println("task "+ (i+1) + " enter period of task by seconds" );
       period[i] = sc.nextInt();
       priority[i]= period[i];
       periodTemp[i]=period[i];
     }
     
-    //periodu az olan daha oncelikli oluyor, kucukten buyuge sort yaptim boylelikle
-    //en bastaki eleman en yuksek oncelikli islemi temsil edecek
+    //The task with lowest period will get higher priority, this is why tasks are sorted by low to high.
     Arrays.sort(priority);
     
     
-    float Ui= 0;  //utilization of task, exec/period // kontrol ediyoruz.
+    float Ui= 0;  //utilization of task, check for (exec/period)
     
     for(int UiCheck=0; UiCheck<taskCount ; UiCheck++)
     {
@@ -75,14 +74,9 @@ public class Main
         System.out.println("Ui 1'den buyuk" );
         utilizationFlag=0;
     }
-   /* else if (Ui>bound)
-    {
-      System.out.println("bound: "+ bound );
-      System.out.println("Ui bound'dan buyuk" );
-      utilizationFlag=0;
-    }*/
-    
+ 
     //zamanı ilerleten for katmani, periodu en yuksek olan islemin iki katı kadar suruyor
+    //for loop continues the time
     if(utilizationFlag!=0)
     {
         
